@@ -1337,6 +1337,7 @@ nav.popup-menu .close-menu-btn img {
   margin-right: 6px;
   margin-left: 6px;
   height: 100%;
+  max-width: 300px;
 }
 .services-slider .slide img {
   margin: 0 auto 19px;

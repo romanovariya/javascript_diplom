@@ -7,7 +7,8 @@ export default class SliderCarousel{
         prev, 
         infinity = false,
         position = 0,
-        slidesToShow = 1
+        slidesToShow = 1,
+        responsive = []
     }) {
         if(!main || !wrap) {
             console.warn('sider-carousel: Необходимо два свойства: "main" и "wrap"');
@@ -24,6 +25,7 @@ export default class SliderCarousel{
             maxPosition: this.slides.length - this.slidesToShow,
             slideWidth: Math.floor(100 / this.slidesToShow)
         };
+        this.responsive = responsive;
     }
     init() {
 
@@ -37,6 +39,9 @@ export default class SliderCarousel{
             this.addArrow();
             this.controlSlider();
         }
+        if (this.responsive) {
+            this.responseInit();
+        }
     }
 
     addGloClass() {
@@ -49,9 +54,11 @@ export default class SliderCarousel{
     }
 
     addStyles() {
-
-        const style = document.createElement('style');
-        style.id = 'sliderCarousel-style';
+        let style = document.getElementById('sliderCarousel-style');
+        if (!style) {
+            style = document.createElement('style');
+            style.id = 'sliderCarousel-style';
+        }
         style.textContent = `
            .glo-slider {
                overflow: hidden !important;
@@ -135,5 +142,33 @@ export default class SliderCarousel{
             }
         `;
         document.head.appendChild(style);
+    }
+
+
+    responseInit() {
+        const slidesToShowDefault = this.slidesToShow;
+        const allResponse = this.responsive.map(item => item.breakpoint);
+        const maxResponse = Math.max(...allResponse);
+
+        const checkResponse = () => {
+            const widthWindow = document.documentElement.clientWidth;
+            if (widthWindow < maxResponse) {
+                for ( let i = 0; i < allResponse.length; i++) {
+                    if (widthWindow < allResponse[i]) {
+                        this.slidesToShow = this.responsive[i].slidesToShow;
+                        this.options.slideWidth = Math.floor(100 / this.slidesToShow);
+                        this.addStyles();
+                    } 
+                }
+            } else {
+                this.slidesToShow = slidesToShowDefault;
+                this.options.slideWidth = Math.floor(100 / this.slidesToShow);
+                this.addStyles();
+            }
+        };
+
+        checkResponse();
+
+        window.addEventListener('resize', checkResponse);
     }
 }
