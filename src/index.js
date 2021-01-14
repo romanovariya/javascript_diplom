@@ -1,6 +1,7 @@
 import clubsList from './modules/clubsList';
 import autoSlider from './modules/autoSlider';
 import SliderCarousel from './modules/sliderCarousel';
+import gallerySlider from './modules/gallerySlider';
 
 
 //выпадающий список залов
@@ -19,3 +20,6 @@ const carousel = new SliderCarousel({
     slidesToShow: 5
 });
 carousel.init();
+
+//gallery
+gallerySlider('.gallery-slider', '.slide', '.slider-dots');

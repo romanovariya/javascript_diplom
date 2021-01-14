@@ -1202,7 +1202,7 @@ nav.popup-menu .close-menu-btn img {
 .slider-dots li {
   float: left;
 }
-.slider-dots li button {
+.slider-dots li {
   width: 22px;
   height: 4px;
   background-color: #fff;
@@ -1210,8 +1210,9 @@ nav.popup-menu .close-menu-btn img {
   border-radius: 2px;
   color: transparent;
   margin-right: 5px;
+  cursor: pointer;
 }
-.slider-dots li.slick-active button {
+.slider-dots li.slick-active {
   background-color: #ffd11a;
 }
 #clubs {
@@ -1397,19 +1398,41 @@ nav.popup-menu .close-menu-btn img {
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  min-height: 500px;
 }
 #gallery .gallery-slider .slide {
   margin: 0 auto !important;
-  width: 100%;
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.5s;
 }
-#gallery .gallery-slider .slider-arrow {
+#gallery .gallery-slider .slide img {
+  margin: 0 auto !important;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#gallery .gallery-slider .slide.slide-active {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+#gallery .gallery-arrow {
   position: absolute;
   top: 50%;
   margin-top: -18px;
   z-index: 100;
   cursor: pointer;
 }
-#gallery .gallery-slider .slider-arrow span {
+#gallery .gallery-arrow span {
   display: block;
   width: 36px;
   height: 37px;
@@ -1418,16 +1441,15 @@ nav.popup-menu .close-menu-btn img {
   text-align: center;
   padding-top: 11px;
 }
-#gallery .gallery-slider .slider-arrow.prev {
+#gallery .gallery-arrow.prev {
   left: 0;
 }
-#gallery .gallery-slider .slider-arrow.next {
+#gallery .gallery-arrow.next {
   right: 0;
 }
 #gallery .gallery-slider .slider-dots {
   left: 50%;
   margin-left: -65px;
-  bottom: 5%;
 }
 #cards {
   padding-bottom: 4rem;
