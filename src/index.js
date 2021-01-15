@@ -2,6 +2,8 @@ import clubsList from './modules/clubsList';
 import autoSlider from './modules/autoSlider';
 import SliderCarousel from './modules/sliderCarousel';
 import gallerySlider from './modules/gallerySlider';
+import formToggle from './modules/formToggle';
+import showGift from './modules/showGift';
 
 
 //выпадающий список залов
@@ -38,3 +40,10 @@ carousel.init();
 
 //gallery
 gallerySlider('.gallery-slider', '.slide', '.slider-dots');
+
+//popup
+formToggle('.free-visit', '#free_visit_form', '.form-content', '.close-form');
+formToggle('.callme-btn', '#callback_form', '.form-content', '.close-form');
+
+//gift
+showGift('.fixed-gift', '#gift', '.form-content', '.close-btn');

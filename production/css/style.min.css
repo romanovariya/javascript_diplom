@@ -1897,8 +1897,18 @@ footer .footer-bottom .right .socials .social-icon:hover a {
 .popup .form-content input::placeholder {
   color: #1e1c34;
 }
-.popup .form-content input[type="text"],
-.popup .form-content input[type="tel"] {
+.popup .form-content #callback_form2-phone,
+.popup .form-content #callback_form2-name {
+  width: 268px;
+  padding: 5px;
+  height: 45px;
+  border-radius: 22px;
+  border: 1px solid #ffd11a;
+  padding-left: 18px;
+  border: none;
+}
+.popup .form-content #callback_form1-phone,
+.popup .form-content #callback_form1-name {
   width: 268px;
   padding: 5px;
   height: 45px;
