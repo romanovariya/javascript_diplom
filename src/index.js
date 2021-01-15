@@ -1,9 +1,11 @@
+'use strict';
 import clubsList from './modules/clubsList';
 import autoSlider from './modules/autoSlider';
 import SliderCarousel from './modules/sliderCarousel';
 import gallerySlider from './modules/gallerySlider';
 import formToggle from './modules/formToggle';
 import showGift from './modules/showGift';
+import sendForm from './modules/sendForm';
 
 
 //выпадающий список залов
@@ -47,3 +49,9 @@ formToggle('.callme-btn', '#callback_form', '.form-content', '.close-form');
 
 //gift
 showGift('.fixed-gift', '#gift', '.form-content', '.close-btn');
+
+//ajax
+sendForm('.form2');
+sendForm('.form1');
+
+
