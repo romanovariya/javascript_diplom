@@ -10,7 +10,7 @@ import sendFormModal from './modules/sendFormModal';
 import footerForm from './modules/footerForm';
 
 import closeModal from './modules/closeModal';
-
+import scrollToTop from './modules/scrollToTop';
 
 
 //выпадающий список залов
@@ -63,4 +63,6 @@ sendFormModal('.formfree', '#thanks');
 footerForm('#footer_form', '#thanks');
 
 closeModal('#thanks', '.form-content', '.close-btn');
+
+scrollToTop();
 
