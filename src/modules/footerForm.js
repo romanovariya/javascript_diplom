@@ -39,21 +39,18 @@ const footerForm = (formClass, modalClass) => {
                 console.error(error);
             });
     });
-        
-    const validateInput = target => {
-        if (target.classList.contains('_phone')) {
-            target.value = target.value.replace(/[^0-9+]/ig, '');
-        }
-    };
+
+    let empty = false;
+    let radio = false;
+    const formBtn = form.querySelector('button');
 
     const checkEmpty = form => {
         const inputs = form.querySelectorAll('input');
-        const formBtn = form.querySelector('button');
-        let empty = false;
         formBtn.disabled = false;
         
         inputs.forEach(elem => {
             if (elem.classList.contains('_phone')) {
+                elem.value = elem.value.replace(/[^0-9+]/ig, '');
                 let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
                 if (!(elem.value.length >= 11 && elem.value.length <= 18)) {
                     formBtn.disabled = true;
@@ -62,7 +59,6 @@ const footerForm = (formClass, modalClass) => {
                     formBtn.disabled = true;
                     empty = true;
                 } else {
-                    formBtn.disabled = false;
                     empty = false;
                 }
             } 
@@ -73,28 +69,34 @@ const footerForm = (formClass, modalClass) => {
         }
 
     };
-    let radio = 0;
     const checkRadio = () => {
         const radios = form.querySelectorAll('.radio');
-        const formBtn = form.querySelector('button');
 
         if (radios[0].checked === false && radios[1].checked === false) {
             formBtn.disabled = true;
+            radio = true;
         } else {
-            formBtn.disabled = false;
+            radio = false;
         }
+    };
 
-
+    const chekForm = () => {
+        if (radio === false && empty === false ) {
+            formBtn.disabled = false;
+        } else {
+            formBtn.disabled = true;
+        }
     };
     form.addEventListener('input', event => {
         const target = event.target;
-        validateInput(target);
         checkEmpty(form);
         checkRadio(form);
+        chekForm();
     });
     form.addEventListener('click', (event) => {
-        checkEmpty(form);
         checkRadio(form);
+        checkEmpty(form);
+        chekForm();
     });
 };
 
