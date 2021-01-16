@@ -62,27 +62,34 @@ const sendForm = (formClass) => {
 			let empty = false;
 			formBtn.disabled = false;
             
-            inputs.forEach(elem => {
-                if (elem.value.trim() === '') {
-                    formBtn.disabled = true;
-                    empty = true;
-                } else if (elem.classList.contains('_phone')) {
-                    if (!(elem.value.length >= 6 && elem.value.length <= 11)) {
-                        formBtn.disabled = true;
-                        empty = true;
-                    }
-                } else if (elem.classList.contains('_name')) {
-                    if (elem.value.length < 2) {
-                        formBtn.disabled = true;
-                        empty = true;
-                    }
-                } else if (elem.classList.contains('checkbox')) {
+			inputs.forEach(elem => {
+				if (elem.value.trim() === '') {
+					formBtn.disabled = true;
+					empty = true;
+				} else if (elem.classList.contains('_phone')) {
+					let phoneRegExp = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+					if (!(elem.value.length >= 6 && elem.value.length <= 11)) {
+						formBtn.disabled = true;
+						empty = true;
+					} else if (phoneRegExp.test(elem.value) === false){
+						formBtn.disabled = true;
+						empty = true;
+					} else {
+						formBtn.disabled = false;
+						empty = false;
+					}
+				} else if (elem.classList.contains('_name')) {
+					if (elem.value.length < 2) {
+						formBtn.disabled = true;
+						empty = true;
+					}
+				} else if (elem.classList.contains('checkbox')) {
 					if (!elem.checked) {
 						formBtn.disabled = true;
-                        empty = true;
+						empty = true;
 					}
 				}
-		    });
+			});
 
 		    if (empty === false) {
 			    formBtn.disabled = false;
