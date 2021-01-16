@@ -12,6 +12,7 @@ import maskPhone from './modules/maskPhone';
 
 import closeModal from './modules/closeModal';
 import scrollToTop from './modules/scrollToTop';
+import modalMenu from './modules/modalMenu';
 
 
 //выпадающий список залов
@@ -68,3 +69,4 @@ closeModal('#thanks', '.form-content', '.close-btn');
 scrollToTop();
 
 maskPhone('._phone');
+modalMenu();
