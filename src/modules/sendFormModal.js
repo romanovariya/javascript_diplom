@@ -40,6 +40,8 @@ const sendFormModal = (formClass, modalClass) => {
                 console.error(error);
             });
     });
+
+
         
     const validateInput = target => {
         if (target.classList.contains('_phone')) {
@@ -58,29 +60,39 @@ const sendFormModal = (formClass, modalClass) => {
         inputs.forEach(elem => {
             if (elem.value.trim() === '') {
                 formBtn.disabled = true;
+				elem.classList.add('_error');
                 empty = true;
             } else if (elem.classList.contains('_phone')) {
                 let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
                 if (!(elem.value.length >= 11 && elem.value.length <= 18)) {
                     formBtn.disabled = true;
                     empty = true;
+                    elem.classList.add('_error');
                 } else if (phoneRegExp.test(elem.value) === false){
                     formBtn.disabled = true;
                     empty = true;
+                    elem.classList.add('_error');
                 } else {
                     formBtn.disabled = false;
                     empty = false;
+                    elem.classList.remove('_error');
                 }
             } else if (elem.classList.contains('_name')) {
                 if (elem.value.length < 2) {
                     formBtn.disabled = true;
                     empty = true;
-                }
+                    elem.classList.add('_error');
+                } else {
+					empty = false;
+					elem.classList.remove('_error');
+				}
             } else if (elem.classList.contains('checkbox')) {
                 if (!elem.checked) {
                     formBtn.disabled = true;
                     empty = true;
-                }
+                } else {
+					empty = false;
+				}
             }
         });
 

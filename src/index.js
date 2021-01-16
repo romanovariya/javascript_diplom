@@ -8,6 +8,7 @@ import showGift from './modules/showGift';
 import sendForm from './modules/sendForm';
 import sendFormModal from './modules/sendFormModal';
 import footerForm from './modules/footerForm';
+import maskPhone from './modules/maskPhone';
 
 import closeModal from './modules/closeModal';
 import scrollToTop from './modules/scrollToTop';
@@ -66,3 +67,4 @@ closeModal('#thanks', '.form-content', '.close-btn');
 
 scrollToTop();
 
+maskPhone('._phone');

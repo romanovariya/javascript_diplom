@@ -55,11 +55,14 @@ const footerForm = (formClass, modalClass) => {
                 if (!(elem.value.length >= 11 && elem.value.length <= 18)) {
                     formBtn.disabled = true;
                     empty = true;
+                    elem.classList.add('_error');
                 } else if (phoneRegExp.test(elem.value) === false){
                     formBtn.disabled = true;
                     empty = true;
+                    elem.classList.add('_error');
                 } else {
                     empty = false;
+                    elem.classList.remove('_error');
                 }
             } 
         });

@@ -1630,7 +1630,7 @@ nav.popup-menu .close-menu-btn img {
   background-image: none;
   outline: 0;
 }
-form input._error {
+._error {
   box-shadow: 0 0 15px red;
 }
 footer #callback_footer_form-phone {
@@ -2103,12 +2103,6 @@ p.personal-data input[type="checkbox"]:checked + label:before {
   html,
   body {
     font-size: 12px;
-  }
-  .hidden-small {
-    display: none !important;
-  }
-  .hidden-large {
-    display: block;
   }
   header {
     margin-bottom: 0;
