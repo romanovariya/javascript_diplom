@@ -67,8 +67,8 @@ const sendForm = (formClass) => {
 					formBtn.disabled = true;
 					empty = true;
 				} else if (elem.classList.contains('_phone')) {
-					let phoneRegExp = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
-					if (!(elem.value.length >= 6 && elem.value.length <= 11)) {
+					let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
+					if (!(elem.value.length >= 11 && elem.value.length <= 18)) {
 						formBtn.disabled = true;
 						empty = true;
 					} else if (phoneRegExp.test(elem.value) === false){

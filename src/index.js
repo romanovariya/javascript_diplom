@@ -7,6 +7,8 @@ import formToggle from './modules/formToggle';
 import showGift from './modules/showGift';
 import sendForm from './modules/sendForm';
 import sendFormModal from './modules/sendFormModal';
+import footerForm from './modules/footerForm';
+
 import closeModal from './modules/closeModal';
 
 
@@ -58,5 +60,7 @@ sendForm('.form2');
 sendForm('.form1');
 
 sendFormModal('.formfree', '#thanks');
+footerForm('#footer_form', '#thanks');
+
 closeModal('#thanks', '.form-content', '.close-btn');
 

@@ -1,5 +1,4 @@
-
-const sendFormModal = (formClass, modalClass) => {
+const footerForm = (formClass, modalClass) => {
     const errorMessage = 'Что-то пошло не так';
 
     const form = document.querySelector(formClass),
@@ -44,9 +43,7 @@ const sendFormModal = (formClass, modalClass) => {
     const validateInput = target => {
         if (target.classList.contains('_phone')) {
             target.value = target.value.replace(/[^0-9+]/ig, '');
-        } else if (target.classList.contains('_name')) {
-            target.value = target.value.replace(/([^А-Яа-яёЁ])/, '');
-        } 
+        }
     };
 
     const checkEmpty = form => {
@@ -56,10 +53,7 @@ const sendFormModal = (formClass, modalClass) => {
         formBtn.disabled = false;
         
         inputs.forEach(elem => {
-            if (elem.value.trim() === '') {
-                formBtn.disabled = true;
-                empty = true;
-            } else if (elem.classList.contains('_phone')) {
+            if (elem.classList.contains('_phone')) {
                 let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
                 if (!(elem.value.length >= 11 && elem.value.length <= 18)) {
                     formBtn.disabled = true;
@@ -71,17 +65,7 @@ const sendFormModal = (formClass, modalClass) => {
                     formBtn.disabled = false;
                     empty = false;
                 }
-            } else if (elem.classList.contains('_name')) {
-                if (elem.value.length < 2) {
-                    formBtn.disabled = true;
-                    empty = true;
-                }
-            } else if (elem.classList.contains('checkbox')) {
-                if (!elem.checked) {
-                    formBtn.disabled = true;
-                    empty = true;
-                }
-            }
+            } 
         });
 
         if (empty === false) {
@@ -89,11 +73,29 @@ const sendFormModal = (formClass, modalClass) => {
         }
 
     };
+    let radio = 0;
+    const checkRadio = () => {
+        const radios = form.querySelectorAll('.radio');
+        const formBtn = form.querySelector('button');
+
+        if (radios[0].checked === false && radios[1].checked === false) {
+            formBtn.disabled = true;
+        } else {
+            formBtn.disabled = false;
+        }
+
+
+    };
     form.addEventListener('input', event => {
         const target = event.target;
         validateInput(target);
         checkEmpty(form);
+        checkRadio(form);
+    });
+    form.addEventListener('click', (event) => {
+        checkEmpty(form);
+        checkRadio(form);
     });
 };
 
-export default sendFormModal;
+export default footerForm;
