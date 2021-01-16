@@ -6,6 +6,9 @@ import gallerySlider from './modules/gallerySlider';
 import formToggle from './modules/formToggle';
 import showGift from './modules/showGift';
 import sendForm from './modules/sendForm';
+import sendFormModal from './modules/sendFormModal';
+import closeModal from './modules/closeModal';
+
 
 
 //выпадающий список залов
@@ -54,4 +57,6 @@ showGift('.fixed-gift', '#gift', '.form-content', '.close-btn');
 sendForm('.form2');
 sendForm('.form1');
 
+sendFormModal('.formfree', '#thanks');
+closeModal('#thanks', '.form-content', '.close-btn');
 
