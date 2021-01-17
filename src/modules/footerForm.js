@@ -5,8 +5,8 @@ const footerForm = (formClass, modalClass) => {
         modal = document.querySelector(modalClass),
         statusMessage = modal.querySelector('.thanks-message');
 
-    
-    const postData = body => fetch('../server.php', {
+    if (form) {
+        const postData = body => fetch('../server.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -125,6 +125,8 @@ const footerForm = (formClass, modalClass) => {
         checkEmpty(form);
         chekForm();
     });
+    }
+    
 };
 
 export default footerForm;
