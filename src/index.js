@@ -15,6 +15,8 @@ import scrollToTop from './modules/scrollToTop';
 import modalMenu from './modules/modalMenu';
 import menuToggle from './modules/menuToggle';
 import stickyNav from './modules/stickyNav';
+import calc from './modules/calc';
+
 
 //выпадающий список залов
 clubsList();
