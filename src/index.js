@@ -14,7 +14,7 @@ import closeModal from './modules/closeModal';
 import scrollToTop from './modules/scrollToTop';
 import modalMenu from './modules/modalMenu';
 import menuToggle from './modules/menuToggle';
-
+import stickyNav from './modules/stickyNav';
 
 //выпадающий список залов
 clubsList();
@@ -73,3 +73,5 @@ maskPhone('._phone');
 
 modalMenu();
 menuToggle();
+
+stickyNav();

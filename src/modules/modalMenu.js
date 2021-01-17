@@ -13,11 +13,7 @@ const modalMenu = () => {
         }
     };
     changeMenu();
-    window.addEventListener('resize',  () => {
-        
-        changeMenu();
-        
-    });
+    window.addEventListener('resize', changeMenu);
 };
 
 export default modalMenu;

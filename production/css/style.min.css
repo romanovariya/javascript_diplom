@@ -1048,6 +1048,11 @@ header .top-menu ul li:last-child:after {
   left: 0;
   top: 0;
 }
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
 nav.popup-menu ul {
   margin: auto;
 }
