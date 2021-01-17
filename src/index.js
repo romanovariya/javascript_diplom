@@ -79,3 +79,5 @@ modalMenu();
 menuToggle();
 
 stickyNav();
+
+calc();

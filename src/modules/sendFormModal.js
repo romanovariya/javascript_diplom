@@ -64,7 +64,7 @@ const sendFormModal = (formClass, modalClass) => {
                 empty = true;
             } else if (elem.classList.contains('_phone')) {
                 let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-                if (elem.value.length !== 18) {
+                if (elem.value.length < 12) {
                     formBtn.disabled = true;
                     empty = true;
                     elem.classList.add('_error');
