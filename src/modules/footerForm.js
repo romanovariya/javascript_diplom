@@ -44,13 +44,23 @@ const footerForm = (formClass, modalClass) => {
     let radio = false;
     const formBtn = form.querySelector('button');
 
+    const validateInput = target => {
+        if (target.classList.contains('_phone')) {
+            target.value = target.value.replace(/[^0-9+]/ig, '');
+        } else if (target.classList.contains('_name')) {
+            target.value = target.value.replace(/([^А-Яа-яёЁ])/, '');
+        } 
+    };
     const checkEmpty = form => {
         const inputs = form.querySelectorAll('input');
         formBtn.disabled = false;
         
         inputs.forEach(elem => {
-            if (elem.classList.contains('_phone')) {
-                elem.value = elem.value.replace(/[^0-9+]/ig, '');
+            if (elem.value.trim() === '') {
+                formBtn.disabled = true;
+				elem.classList.add('_error');
+                empty = true;
+            } else if (elem.classList.contains('_phone')) {
                 let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
                 if (!(elem.value.length >= 11 && elem.value.length <= 18)) {
                     formBtn.disabled = true;
@@ -64,7 +74,23 @@ const footerForm = (formClass, modalClass) => {
                     empty = false;
                     elem.classList.remove('_error');
                 }
-            } 
+            } else if (elem.classList.contains('_name')) {
+                if (elem.value.length < 2) {
+                    formBtn.disabled = true;
+                    empty = true;
+                    elem.classList.add('_error');
+                } else {
+					empty = false;
+					elem.classList.remove('_error');
+				}
+            } else if (elem.classList.contains('checkbox')) {
+                if (!elem.checked) {
+                    formBtn.disabled = true;
+                    empty = true;
+                } else {
+					empty = false;
+				}
+            }
         });
 
         if (empty === false) {
@@ -74,17 +100,14 @@ const footerForm = (formClass, modalClass) => {
     };
     const checkRadio = () => {
         const radios = form.querySelectorAll('.radio');
-
-        if (radios[0].checked === false && radios[1].checked === false) {
-            formBtn.disabled = true;
-            radio = true;
-        } else {
-            radio = false;
-        }
+        const tmp = Array.prototype.slice.call(radios);
+        radio = tmp.some((elem) => {
+            return elem.checked === true;
+        });
     };
 
     const chekForm = () => {
-        if (radio === false && empty === false ) {
+        if (radio === true && empty === false ) {
             formBtn.disabled = false;
         } else {
             formBtn.disabled = true;
@@ -92,6 +115,7 @@ const footerForm = (formClass, modalClass) => {
     };
     form.addEventListener('input', event => {
         const target = event.target;
+        validateInput(target);
         checkEmpty(form);
         checkRadio(form);
         chekForm();

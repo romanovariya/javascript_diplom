@@ -298,44 +298,43 @@
     <section id="cards">
       <div class="wrapper">
         <h2>выбрать карту</h2>
-        <form action="" id="card_order">
+        <form action="" id="card_order" class="cards-form">
           <div class="cards-types">
-            <input id="t1" type="radio" name="card-type" value="1s" checked />
+            <input id="t1" type="radio" class="radio" name="card-type" value="1s" checked />
             <label for="t1"
-              ><span class="long">1 месяц</span><br /><span class="solo">- соло -</span><br /><span class="cost">1999<span class="rubl">i</span></span
+              ><span class="long">1 месяц</span><br /><span class="solo">- соло -</span><br /><span class="cost">2999<span class="rubl">i</span></span
               ><br /><span class="frost">* Без заморозки</span></label
             >
-            <input id="t2" type="radio" name="card-type" value="6s" />
+            <input id="t2" type="radio" class="radio" name="card-type" value="6s" />
             <label for="t2"
-              ><span class="long">6 месяцев</span><br /><span class="solo">- соло -</span><br /><span class="cost">9900<span class="rubl">i</span></span
+              ><span class="long">6 месяцев</span><br /><span class="solo">- соло -</span><br /><span class="cost">14990<span class="rubl">i</span></span
               ><br /><span class="frost">* Без заморозки</span></label
             >
-            <input id="t3" type="radio" name="card-type" value="9s" />
+            <input id="t3" type="radio" class="radio" name="card-type" value="9s" />
             <label for="t3"
-              ><span class="long">9 месяцев</span><br /><span class="solo">- соло -</span><br /><span class="cost">13900<span class="rubl">i</span></span
+              ><span class="long">9 месяцев</span><br /><span class="solo">- соло -</span><br /><span class="cost">21990<span class="rubl">i</span></span
               ><br /><span class="frost">* Без заморозки</span></label
             >
-            <input id="t4" type="radio" name="card-type" value="12d" />
+            <input id="t4" type="radio" class="radio" name="card-type" value="12d" />
             <label for="t4"
-              ><span class="long">12 месяцев</span><br /><span class="solo">- дневная -</span><br /><span class="cost">9900<span class="rubl">i</span></span
+              ><span class="long">12 месяцев</span><br /><span class="solo">- дневная -</span><br /><span class="cost">14990<span class="rubl">i</span></span
               ><br /><span class="frost">* 1 месяц заморозки</span></label
             >
-            <input id="t5" type="radio" name="card-type" value="12s" />
+            <input id="t5" type="radio" class="radio" name="card-type" value="12s" />
             <label for="t5"
-              ><span class="long">12 месяцев</span><br /><span class="solo">- соло -</span><br /><span class="cost">19900<span class="rubl">i</span></span
+              ><span class="long">12 месяцев</span><br /><span class="solo">- соло -</span><br /><span class="cost">24990<span class="rubl">i</span></span
               ><br /><span class="frost">* 1 месяц заморозки</span></label
             >
           </div>
           <div class="content">
             <div class="left">
-              <img src="../images/mozaika-card.jpg" alt="Клубныая карта" />
+              <img src="../images/mozaika-card.jpg" alt="Клубная карта" />
             </div>
             <div class="right">
-              <input type="hidden" name="form_name" value="Заказать карту" />
-              <p class="input-text"><input name="name" type="text" required placeholder="Ваше имя..." /></p>
-              <p class="input-text"><input type="tel" name="phone" id="callback_form-phone" required placeholder="Ваш номер телефона..." /></p>
+              <p class="input-text"><input name="name" class="input _req _name" type="text" required placeholder="Ваше имя..." /></p>
+              <p class="input-text"><input type="tel" class="input _req _phone" name="phone" id="callback_form-phone" required placeholder="Ваш номер телефона..." /></p>
               <div class="form-bottom">
-                <p class="personal-data"><input type="checkbox" required id="card_check" /><label for="card_check">Я согласен на обработку персональных данных</label></p>
+                <p class="personal-data"><input type="checkbox" class="checkbox" required id="card_check" /><label for="card_check">Я согласен на обработку персональных данных</label></p>
                 <p class="submit">
                   <button type="submit" class="btn card-order-btn">Забронировать карту</button>
                 </p>

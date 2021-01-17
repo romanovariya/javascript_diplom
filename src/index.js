@@ -64,6 +64,8 @@ sendForm('.form1');
 
 sendFormModal('.formfree', '#thanks');
 footerForm('#footer_form', '#thanks');
+footerForm('.cards-form', '#thanks');
+
 
 closeModal('#thanks', '.form-content', '.close-btn');
 
