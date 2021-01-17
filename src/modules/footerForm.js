@@ -62,7 +62,7 @@ const footerForm = (formClass, modalClass) => {
                 empty = true;
             } else if (elem.classList.contains('_phone')) {
                 let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-                if (!(elem.value.length >= 11 && elem.value.length <= 18)) {
+                if (elem.value.length !== 18){
                     formBtn.disabled = true;
                     empty = true;
                     elem.classList.add('_error');
