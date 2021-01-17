@@ -1035,7 +1035,7 @@ header .top-menu ul li:last-child {
 header .top-menu ul li:last-child:after {
   display: none;
 }
-nav.popup-menu {
+.popup-menu {
   display: none;
   flex-direction: column;
   position: fixed;
@@ -1632,6 +1632,9 @@ nav.popup-menu .close-menu-btn img {
 }
 ._error {
   box-shadow: 0 0 15px red;
+}
+.active-menu {
+  display: flex;
 }
 footer #callback_footer_form-phone {
   width: 100%;
