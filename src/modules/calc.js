@@ -1,7 +1,7 @@
 const calc = () => {
     const errorMessage = 'Что-то пошло не так';
 
-    const form = document.querySelector('#card_order'),
+    const form = document.querySelector('.choose-abonement'),
         modal = document.querySelector('#thanks'),
         statusMessage = modal.querySelector('.thanks-message');
 
