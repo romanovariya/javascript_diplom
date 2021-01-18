@@ -29,8 +29,16 @@ const calc = () => {
                 } else {
                     modal.style.display = 'block';
                     inputs.forEach(elem => {
-                        elem.value = '';
-                    });
+						if (elem.classList.contains('_phone') || elem.classList.contains('_name') || elem.classList.contains('_code')) {
+							elem.value = '';
+						} else {
+							elem.checked = false;
+						}
+					});
+
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 3000);
                 }
             })
             .catch(error => {
@@ -84,11 +92,14 @@ const calc = () => {
                         elem.classList.remove('_error');
                     }
                 } else if (elem.classList.contains('checkbox')) {
+                    const pData = form.querySelector('.personal-data');
                     if (!elem.checked) {
                         formBtn.disabled = true;
                         empty = true;
+					    pData.style = 'background-color: red';
                     } else {
                         empty = false;
+					    pData.style = 'background-color: transparent';
                     }
                 }
             });
@@ -104,12 +115,28 @@ const calc = () => {
             radio = tmp.some((elem) => {
                 return elem.checked === true;
             });
+            return radio;
         };
 
         const chekForm = () => {
-            if (radio === true && empty === false ) {
+            if (checkRadio('.radio') === true && checkRadio('.card-radio') === true && empty === false ) {
                 formBtn.disabled = false;
             } else {
+                const gym = form.querySelectorAll('.club');
+                const time = form.querySelector('.time');
+                if (checkRadio('.radio') === false) {
+                    gym[0].style.cssText = 'box-shadow: 0 0 15px red';
+                    gym[1].style.cssText = 'box-shadow: 0 0 15px red';
+                } else if (checkRadio('.radio') === true) {
+                    gym[0].style.cssText = 'box-shadow: none';
+                    gym[1].style.cssText = 'box-shadow: none';
+                } 
+                if (checkRadio('.card-radio') === false) {
+                    time.style.cssText = 'box-shadow: 0 0 15px red';
+                } else if (checkRadio('.card-radio') === true) {
+                    time.style.cssText = 'box-shadow: none';
+                }
+
                 formBtn.disabled = true;
             }
         };
@@ -167,17 +194,17 @@ const calc = () => {
             const target = event.target;
             validateInput(target);
             checkEmpty(form);
-            checkRadio('.radio');
-            checkRadio('.card-radio');
             chekForm();
-            calcValue();
+            if (checkRadio('.radio') === true && checkRadio('.card-radio') === true) {
+                calcValue();
+            }
         });
         form.addEventListener('click', () => {
-            checkRadio('.radio');
-            checkRadio('.card-radio');
             checkEmpty(form);
             chekForm();
-            calcValue();
+            if (checkRadio('.radio') === true && checkRadio('.card-radio') === true) {
+                calcValue();
+            }
         });
 
 

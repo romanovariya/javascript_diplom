@@ -8,6 +8,8 @@ import showGift from './modules/showGift';
 import sendForm from './modules/sendForm';
 import sendFormModal from './modules/sendFormModal';
 import footerForm from './modules/footerForm';
+import cardsForm from './modules/cardsForm';
+
 import maskPhone from './modules/maskPhone';
 
 import closeModal from './modules/closeModal';
@@ -61,12 +63,12 @@ formToggle('.callme-btn', '#callback_form', '.form-content', '.close-form');
 showGift('.fixed-gift', '#gift', '.form-content', '.close-btn');
 
 //ajax
-sendForm('.form2');
-sendForm('.form1');
+sendForm('#free_visit_form', '.form2');
+sendForm('#callback_form', '.form1');
 
 sendFormModal('.formfree', '#thanks');
 footerForm('#footer_form', '#thanks');
-footerForm('.cards-form', '#thanks');
+cardsForm('.cards-form', '#thanks');
 
 
 closeModal('#thanks', '.form-content', '.close-btn');

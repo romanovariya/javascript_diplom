@@ -1,4 +1,4 @@
-const footerForm = (formClass, modalClass) => {
+const cardsForm = (formClass, modalClass) => {
     const errorMessage = 'Что-то пошло не так';
 
     const form = document.querySelector(formClass),
@@ -35,7 +35,6 @@ const footerForm = (formClass, modalClass) => {
 							elem.checked = false;
 						}
 					});
-
                     setTimeout(() => {
                         modal.style.display = 'none';
                     }, 3000);
@@ -121,13 +120,11 @@ const footerForm = (formClass, modalClass) => {
         if (radio === true && empty === false ) {
             formBtn.disabled = false;
         } else {
-                const gym = form.querySelectorAll('.club');
+                const card = form.querySelector('.cards-types');
             if (radio === false) {
-                gym[0].style.cssText = 'box-shadow: 0 0 15px red';
-                gym[1].style.cssText = 'box-shadow: 0 0 15px red';
+                card.style.cssText = 'box-shadow: 0 0 15px red';
             } else if (radio === true) {
-                gym[0].style.cssText = 'box-shadow: none';
-                gym[1].style.cssText = 'box-shadow: none';
+                card.style.cssText = 'box-shadow: none';
             }
             formBtn.disabled = true;
         } 
@@ -148,4 +145,4 @@ const footerForm = (formClass, modalClass) => {
     
 };
 
-export default footerForm;
+export default cardsForm;

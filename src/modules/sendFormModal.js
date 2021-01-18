@@ -30,8 +30,16 @@ const sendFormModal = (formClass, modalClass) => {
                 } else {
                     modal.style.display = 'block';
                     inputs.forEach(elem => {
-                        elem.value = '';
-                    });
+						if (elem.classList.contains('_phone') || elem.classList.contains('_name')) {
+							elem.value = '';
+						} else {
+							elem.checked = false;
+						}
+					});
+
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                    }, 3000);
                 }
             })
             .catch(error => {
@@ -87,11 +95,14 @@ const sendFormModal = (formClass, modalClass) => {
 					elem.classList.remove('_error');
 				}
             } else if (elem.classList.contains('checkbox')) {
+                const pData = form.querySelector('.personal-data');
                 if (!elem.checked) {
                     formBtn.disabled = true;
                     empty = true;
+					pData.style = 'background-color: red';
                 } else {
-					empty = false;
+                    empty = false;
+					pData.style = 'background-color: transparent';
 				}
             }
         });

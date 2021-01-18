@@ -1,10 +1,11 @@
-const sendForm = (formClass) => {
+const sendForm = (modalClass, formClass) => {
 
     const errorMessage = 'Что-то пошло не так',
         loadMessage = 'Загрузка...',
         successMessage = 'Спасибо! Мы скоро с вами свяжемся!';
 
-	const form = document.querySelector(formClass),
+	const modal = document.querySelector(modalClass),
+		form = document.querySelector(formClass),
 		formContent = form.querySelector('form');
 
     const statusMessage = document.createElement('div');
@@ -37,9 +38,18 @@ const sendForm = (formClass) => {
 				throw new Error('status network not 200');
 				} else {
 					formContent.style.display = 'none';
+					setTimeout(() => {
+						modal.style.display = 'none';
+						formContent.style.display = 'block';
+						statusMessage.textContent ='';
+					}, 3000);
 					statusMessage.textContent = successMessage;
 					inputs.forEach(elem => {
-						elem.value = '';
+						if (elem.classList.contains('_phone') || elem.classList.contains('_name')) {
+							elem.value = '';
+						} else {
+							elem.checked = false;
+						}
 					});
 				}
 			})
@@ -93,11 +103,14 @@ const sendForm = (formClass) => {
 					elem.classList.remove('_error');
 				}
 			} else if (elem.classList.contains('checkbox')) {
+				const pData = form.querySelector('.personal-data');
 				if (!elem.checked) {
 					formBtn.disabled = true;
 					empty = true;
+					pData.style = 'background-color: red';
 				} else {
 					empty = false;
+					pData.style = 'background-color: transparent';
 				}
 			}
 		});
