@@ -34,7 +34,9 @@ const calc = () => {
 						} else {
 							elem.checked = false;
 						}
-					});
+                    });
+                    const priceTotal = form.querySelector('#price-total');
+                    priceTotal.innerHTML = '0';
 
                     setTimeout(() => {
                         modal.style.display = 'none';
