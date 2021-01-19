@@ -22,6 +22,8 @@ const calc = () => {
         formData.forEach((val, key) => {
             body[key] = val;
         });
+        const price = form.querySelector('#price-total');
+        body.price = price.innerHTML;
         postData(body)
             .then(response => {
                 if (response.status !== 200) {
@@ -50,8 +52,10 @@ const calc = () => {
             });
         });
 
-        let empty = false;
-        let radio = false;
+    let radio = false,
+        phone = false,
+        name = false,
+        checkbox = false;
         const formBtn = form.querySelector('button');
 
         const validateInput = target => {
@@ -66,49 +70,36 @@ const calc = () => {
             formBtn.disabled = false;
             
             inputs.forEach(elem => {
-                if (elem.value.trim() === '' && !elem.classList.contains('_code')) {
+                if (elem.value.trim() === '' && ( elem.classList.contains('_name') || elem.classList.contains('_phone'))) {
                     formBtn.disabled = true;
                     elem.classList.add('_error');
-                    empty = true;
                 } else if (elem.classList.contains('_phone')) {
-                    let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-                    if (elem.value.length < 12){
-                        formBtn.disabled = true;
-                        empty = true;
-                        elem.classList.add('_error');
-                    } else if (phoneRegExp.test(elem.value) === false){
-                        formBtn.disabled = true;
-                        empty = true;
+                    if (elem.value.length < 11){
+                        phone = false;
                         elem.classList.add('_error');
                     } else {
-                        empty = false;
+                        phone = true;
                         elem.classList.remove('_error');
                     }
                 } else if (elem.classList.contains('_name')) {
                     if (elem.value.length < 2) {
-                        formBtn.disabled = true;
-                        empty = true;
                         elem.classList.add('_error');
+                        name = false;
                     } else {
-                        empty = false;
+                        name = true;
                         elem.classList.remove('_error');
                     }
                 } else if (elem.classList.contains('checkbox')) {
                     const pData = form.querySelector('.personal-data');
                     if (!elem.checked) {
-                        formBtn.disabled = true;
-                        empty = true;
-					    pData.style = 'background-color: red';
+                        pData.style = 'background-color: red';
+                        checkbox = false;
                     } else {
-                        empty = false;
-					    pData.style = 'background-color: transparent';
+                        pData.style = 'background-color: transparent';
+                        checkbox = true;
                     }
                 }
             });
-
-            if (empty === false) {
-                formBtn.disabled = false;
-            }
 
         };
         const checkRadio = (radioClass) => {
@@ -121,7 +112,7 @@ const calc = () => {
         };
 
         const chekForm = () => {
-            if (checkRadio('.radio') === true && checkRadio('.card-radio') === true && empty === false ) {
+            if (checkRadio('.radio') === true && checkRadio('.card-radio') === true && name === true && checkbox === true && phone === true ) {
                 formBtn.disabled = false;
             } else {
                 const gym = form.querySelectorAll('.club');

@@ -22,11 +22,23 @@ const formToggle = (openBtn, popupDiv, content, closeBtn) => {
         if(target.closest(closeBtn)) {
             popup.style.display = "none";
             clearInput();
+            const inputs = popup.querySelectorAll('input');
+            inputs.forEach(elem => {
+                elem.classList.remove('_error');
+            });
+            const pData = popup.querySelector('.personal-data');
+			pData.style = 'background-color: transparent';
         } else {
             target = target.closest(content);
             if(!target) {
                 popup.style.display = "none";
                 clearInput();
+                const inputs = popup.querySelectorAll('input');
+                inputs.forEach(elem => {
+                    elem.classList.remove('_error');
+                });
+                const pData = popup.querySelector('.personal-data');
+		    	pData.style = 'background-color: transparent';
             }
         }
     });

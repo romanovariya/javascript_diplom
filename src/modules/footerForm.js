@@ -48,65 +48,43 @@ const footerForm = (formClass, modalClass) => {
             });
     });
 
-    let empty = false;
-    let radio = false;
+    let radio = false,
+        phone = false,
+        checkbox = false;
     const formBtn = form.querySelector('button');
 
     const validateInput = target => {
         if (target.classList.contains('_phone')) {
             target.value = target.value.replace(/[^0-9+]/ig, '');
-        } else if (target.classList.contains('_name')) {
-            target.value = target.value.replace(/([^А-Яа-яёЁ])/, '');
-        } 
+        }
     };
     const checkEmpty = form => {
         const inputs = form.querySelectorAll('input');
         formBtn.disabled = false;
         
         inputs.forEach(elem => {
-            if (elem.value.trim() === '') {
+            if (elem.value.trim() === '' && (elem.classList.contains('_phone'))) {
                 formBtn.disabled = true;
 				elem.classList.add('_error');
-                empty = true;
             } else if (elem.classList.contains('_phone')) {
-                let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-                if (elem.value.length < 12){
-                    formBtn.disabled = true;
-                    empty = true;
+                if (elem.value.length < 11){
                     elem.classList.add('_error');
-                } else if (phoneRegExp.test(elem.value) === false){
-                    formBtn.disabled = true;
-                    empty = true;
-                    elem.classList.add('_error');
+                    phone = false;
                 } else {
-                    empty = false;
                     elem.classList.remove('_error');
+                    phone = true;
                 }
-            } else if (elem.classList.contains('_name')) {
-                if (elem.value.length < 2) {
-                    formBtn.disabled = true;
-                    empty = true;
-                    elem.classList.add('_error');
-                } else {
-					empty = false;
-					elem.classList.remove('_error');
-				}
             } else if (elem.classList.contains('checkbox')) {
                 const pData = form.querySelector('.personal-data');
                 if (!elem.checked) {
-                    formBtn.disabled = true;
-                    empty = true;
+                    checkbox = false;
 					pData.style = 'background-color: red';
                 } else {
-                    empty = false;
-					pData.style = 'background-color: transparent';
+                    pData.style = 'background-color: transparent';
+                    checkbox = true;
 				}
             }
         });
-
-        if (empty === false) {
-            formBtn.disabled = false;
-        }
 
     };
     const checkRadio = () => {
@@ -118,7 +96,7 @@ const footerForm = (formClass, modalClass) => {
     };
 
     const chekForm = () => {
-        if (radio === true && empty === false ) {
+        if (radio === true && phone === true && checkbox === true ) {
             formBtn.disabled = false;
         } else {
                 const gym = form.querySelectorAll('.club');

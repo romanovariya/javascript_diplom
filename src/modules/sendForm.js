@@ -70,55 +70,47 @@ const sendForm = (modalClass, formClass) => {
 	const checkEmpty = form => {
 		const inputs = form.querySelectorAll('input');
 		const formBtn = form.querySelector('button');
-		let empty = false;
+		let phone = false,
+		 name = false,
+		 checkbox = false;
 		formBtn.disabled = false;
-		
 		inputs.forEach(elem => {
-			if (elem.value.trim() === '') {
+			if (elem.value.trim() === '' && ( elem.classList.contains('_name') || elem.classList.contains('_phone'))) {
 				formBtn.disabled = true;
 				elem.classList.add('_error');
-				empty = true;
 			} else if (elem.classList.contains('_phone')) {
-				let phoneRegExp = /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/;
-				if (elem.value.length < 12) {
-					formBtn.disabled = true;
-					empty = true;
+				if (elem.value.length < 18) {
 					elem.classList.add('_error');
-				} else if (phoneRegExp.test(elem.value) === false){
-					formBtn.disabled = true;
-					empty = true;
-					elem.classList.add('_error');
+					phone = false;
 				} else {
-					empty = false;
 					elem.classList.remove('_error');
-
+					phone = true;
 				}
 			} else if (elem.classList.contains('_name')) {
 				if (elem.value.length < 2) {
-					formBtn.disabled = true;
-					empty = true;
 					elem.classList.add('_error');
+					name = false;
 				} else {
-					empty = false;
 					elem.classList.remove('_error');
+					name = true;
 				}
 			} else if (elem.classList.contains('checkbox')) {
 				const pData = form.querySelector('.personal-data');
 				if (!elem.checked) {
-					formBtn.disabled = true;
-					empty = true;
 					pData.style = 'background-color: red';
+					checkbox = false;
 				} else {
-					empty = false;
+                    checkbox = true;
 					pData.style = 'background-color: transparent';
 				}
 			}
 		});
 
-		if (empty === false) {
-			formBtn.disabled = false;
-		}
-
+        if (name === true && checkbox === true && phone === true) {
+            formBtn.disabled = false;
+        } else {
+            formBtn.disabled = true;
+        }
 	};
 	form.addEventListener('input', event => {
 		const target = event.target;
